@@ -1,10 +1,9 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import { getAll, update } from "./BooksAPI";
-import BookShelf from "./components/BookShelf";
 import { Route, Routes } from "react-router-dom";
 import SearchBook from "./components/SearchBook";
-import OpenSearch from "./components/OpenSearch";
+import BookList from "./components/BookList";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -52,21 +51,14 @@ function App() {
       <Route
         exact
         path="/"
-        element={[
-          <BookShelf
-            title={"Currently Reading"}
-            books={currentlyReading}
+        element={
+          <BookList
+            currentlyReading={currentlyReading}
+            wantToRead={wantToRead}
+            read={read}
             updateShelf={updateShelf}
-          />,
-
-          <BookShelf
-            title={"Want to Read"}
-            books={wantToRead}
-            updateShelf={updateShelf}
-          />,
-          <BookShelf title={"Read"} books={read} updateShelf={updateShelf} />,
-          <OpenSearch></OpenSearch>
-        ]}
+          ></BookList>
+        }
       />
       <Route
         path="/search"
