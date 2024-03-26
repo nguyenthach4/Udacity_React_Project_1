@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { getAll, search, update } from "../BooksAPI";
 import PropTypes from "prop-types";
 import Book from "./Book";
+import { Link } from "react-router-dom";
 
 const SearchBook = ({
   booksSearch,
   setBooksSearch,
-  toggleShowSearchPage,
   updateShelf,
 }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -50,9 +50,9 @@ const SearchBook = ({
   return (
     <div className="search-books">
       <div className="search-books-bar">
-        <a className="close-search" onClick={toggleShowSearchPage}>
-          {"Close"}
-        </a>
+        <Link to="/" className="close-search">
+          Close
+        </Link>
         <div className="search-books-input-wrapper">
           <input
             type="text"
@@ -79,7 +79,6 @@ const SearchBook = ({
 SearchBook.propTypes = {
   booksSearch: PropTypes.array.isRequired,
   setBooksSearch: PropTypes.func.isRequired,
-  toggleShowSearchPage: PropTypes.func.isRequired,
   updateShelf: PropTypes.func.isRequired,
 };
 
